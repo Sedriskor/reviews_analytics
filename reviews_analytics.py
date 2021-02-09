@@ -17,7 +17,7 @@ print('平均留言長度為', int(sum_len/len(data)),'字數')
 #記得換行 不然會在FOR的範圍內一直跑
 
 #清單的篩選
-
+#長度的篩選
 new = [] # new = 留言長度小於100字的清單
 for d in data:
     if len(d) < 100:
@@ -26,4 +26,26 @@ print('一共有', len(new), '留言長度小於100')#這邊是字母總數 非�
 print(new[0])
 print(new[1])
 
+#單字的篩選
+good_str = [] # good_str = 含good單字的清單
+for d in data:
+    if 'good' in d:
+        good_str.append(d)
+print('一共有', len(good_str), '留言提到good')
+print(good_str[0])
+print(good_str[1])
 
+#list comprehension(清單快寫法)
+good_str1 = [d for d in data if 'good' in d]
+#output=[運算(d) for 變數(d) in 清單(data) if 篩選條件('good' in d) ]
+#從for之後開始跑 再丟到d(同等good_str.append(d))
+print('一共有', len(good_str1), '留言提到good')
+
+commit = int(input('要看第幾筆留言： '))
+commit = commit - 1
+
+print(good_str1[commit])
+
+bad_str = ['bad' in d for d in data]
+#'bad' in d 為布林值
+print(bad_str[0])
