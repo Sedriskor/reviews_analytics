@@ -22,21 +22,25 @@ def read_file(filename): #file read
 
 def data_anaiytics(data): #data anaiytics
     print('數據分析中，請稍等...')
-    start_time = time.time() #time模組的'time()'function    
+    start_time = time.time() #time模組的'time()'function
+
+    numbers_and_symbol = '1234567890!@#$%^&*()_+~`-=[]}{|:;/.?><,'    
     word_count = {} 
     for d in data:
+        for n_a_s in numbers_and_symbol:
+             if n_a_s in d:
+                d = d.replace(n_a_s, '') #去掉numbers_and_symbol字串
         words = d.split() #split本身就是跳過空白鍵 如果打入' '會出現空字串
         for word in words:
             if word in word_count:
                 word_count[word] += 1 
             else:
-                word_count[word] = 1 #新增新的字進去word_count字典
-
-        
-    # for word in word_count: #列出大於200萬次的字
+                word_count[word] = 1 #新增新的字進去word_count字典       
+    # for word in word_count: #列出大於__次的字
     #     if word_count[word] > 1000:
     #         print(word, word_count[word])
     # print(word_count['the'])
+
     end_time = time.time()
     print('共花了', end_time - start_time, '秒')
     return word_count
